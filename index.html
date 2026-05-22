@@ -9,7 +9,7 @@
   <meta property="og:title" content="Relinq — One QR. Infinite destinations." />
   <meta property="og:description" content="Print one permanent QR code, then update where it points anytime from your dashboard." />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,11 +22,7 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a href="#top" class="brand" aria-label="Relinq home">
-        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <rect x="6.5" y="6.5" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.6" />
-          <path d="M14 16.2H21.5A4 4 0 0 1 25.5 20.2V25.5" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" />
-          <circle cx="25.5" cy="25.5" r="2.4" fill="var(--accent)" />
-        </svg>
+        <img src="relinq-mark.png" class="brand-mark" alt="" width="392" height="408" />
         <span class="brand-name">Relinq</span>
         <span class="brand-tag">/ Dynamic QR</span>
       </a>
@@ -250,7 +246,10 @@
   <footer class="site-footer">
     <div class="container footer-top">
       <div class="footer-brand">
-        <span class="brand-name">Relinq</span>
+        <div class="footer-lockup">
+          <img src="relinq-mark.png" class="footer-mark" alt="" width="392" height="408" />
+          <span class="brand-name">Relinq</span>
+        </div>
         <p>Static print. Dynamic destination.</p>
       </div>
       <nav class="footer-col" aria-label="Product">
