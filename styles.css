@@ -1083,6 +1083,122 @@ section[id] {
 }
 
 /* ============================================================
+   LEGAL / PRIVACY PAGE
+   ============================================================ */
+.legal-main {
+  padding-top: 64px;
+}
+
+.legal-hero {
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-hero .container {
+  padding-top: clamp(4rem, 8vw, 6.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.legal-title {
+  margin-top: 1.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.04;
+}
+
+.legal-meta {
+  margin-top: 1.2rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-faint);
+}
+
+.legal-body .container {
+  padding-top: clamp(3rem, 6vw, 4.5rem);
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+
+.legal-content {
+  max-width: 46rem;
+}
+
+.legal-content section + section {
+  margin-top: 2.75rem;
+}
+
+.legal-content h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.legal-content h2 .num {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.legal-content p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.legal-content p + p {
+  margin-top: 0.9rem;
+}
+
+.legal-content .legal-lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.legal-content ul {
+  margin-top: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.legal-content li {
+  position: relative;
+  padding-left: 1.3rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.legal-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.legal-content a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(121, 230, 216, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.legal-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.legal-content strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ============================================================
    COMING SOON MODAL
    ============================================================ */
 .modal[hidden] {
