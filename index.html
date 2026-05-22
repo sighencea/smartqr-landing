@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Relinq — One QR. Infinite destinations.</title>
+  <meta name="description" content="Relinq gives every printed QR code a living destination. Update the link anytime without reprinting business cards, labels, menus, or packaging." />
+  <meta name="theme-color" content="#07080a" />
+  <meta property="og:title" content="Relinq — One QR. Infinite destinations." />
+  <meta property="og:description" content="Print one permanent QR code, then update where it points anytime from your dashboard." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Relinq home">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="6.5" y="6.5" width="11" height="11" rx="2.5" stroke="currentColor" stroke-width="1.6" />
+          <path d="M14 16.2H21.5A4 4 0 0 1 25.5 20.2V25.5" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" />
+          <circle cx="25.5" cy="25.5" r="2.4" fill="var(--accent)" />
+        </svg>
+        <span class="brand-name">Relinq</span>
+        <span class="brand-tag">/ Dynamic QR</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#use-cases">Use cases</a>
+      </nav>
+      <a href="/signup" class="header-cta" aria-label="Start building with Relinq">Start building</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="grid-backdrop"></div>
+        <div class="hero-glow"></div>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="hero-copy reveal">
+            <span class="badge">
+              <span class="badge-dot"><span class="ping"></span><span class="dot"></span></span>
+              Dynamic QR Infrastructure
+            </span>
+            <h1 class="hero-title">One QR.<br />Infinite destinations.</h1>
+            <p class="hero-sub">
+              Relinq gives every printed QR code a living destination — update
+              the link anytime without reprinting business cards, labels,
+              menus, or packaging.
+            </p>
+            <div class="cta-row">
+              <a href="/signup" class="btn btn-primary" aria-label="Start building with Relinq">
+                Start building
+                <svg class="ic-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#how-it-works" class="btn btn-ghost" aria-label="See how Relinq works">
+                See how it works
+                <svg class="ic-arrow ic-down" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 13l7 7 7-7"/></svg>
+              </a>
+            </div>
+            <ul class="spec-strip">
+              <li><span class="spec-dot"></span>No reprints</li>
+              <li><span class="spec-dot"></span>Server-side redirects</li>
+              <li><span class="spec-dot"></span>Print-safe</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual reveal" style="--d:0.15s">
+            <!-- One QR routing to a changing destination -->
+            <svg viewBox="0 0 560 470" class="qr-diagram" role="img"
+              aria-label="One Relinq QR code routing to a destination that can change between website, portfolio, menu, campaign, and contact card.">
+              <defs>
+                <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="3.4" result="b" />
+                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+              </defs>
+
+              <text x="24" y="146" class="dg-eyebrow">SOURCE / STATIC</text>
+              <text x="372" y="44" class="dg-eyebrow">DESTINATION / DYNAMIC</text>
+
+              <rect x="24" y="158" width="184" height="184" rx="14" class="qr-card" />
+              <g id="qr-modules"></g>
+              <text x="116" y="364" text-anchor="middle" class="dg-caption">RELINQ-QR / PERMANENT</text>
+
+              <!-- connectors -->
+              <path class="conn active" data-i="0" d="M208,242 C 282,242 300,82 372,82" />
+              <path class="conn" data-i="1" d="M208,242 C 282,242 300,162 372,162" />
+              <path class="conn" data-i="2" d="M208,242 C 282,242 300,242 372,242" />
+              <path class="conn" data-i="3" d="M208,242 C 282,242 300,322 372,322" />
+              <path class="conn" data-i="4" d="M208,242 C 282,242 300,402 372,402" />
+              <circle cx="208" cy="242" r="4.5" class="origin-dot" />
+
+              <!-- destination chips -->
+              <g class="chip active" data-i="0">
+                <rect class="chip-box" x="372" y="60" width="164" height="44" rx="10" />
+                <circle class="chip-dot" cx="390" cy="82" r="3.4" />
+                <text class="chip-label" x="406" y="86">Website</text>
+                <text class="chip-live" x="522" y="85.5" text-anchor="end">LIVE</text>
+              </g>
+              <g class="chip" data-i="1">
+                <rect class="chip-box" x="372" y="140" width="164" height="44" rx="10" />
+                <circle class="chip-dot" cx="390" cy="162" r="3.4" />
+                <text class="chip-label" x="406" y="166">Portfolio</text>
+                <text class="chip-live" x="522" y="165.5" text-anchor="end">LIVE</text>
+              </g>
+              <g class="chip" data-i="2">
+                <rect class="chip-box" x="372" y="220" width="164" height="44" rx="10" />
+                <circle class="chip-dot" cx="390" cy="242" r="3.4" />
+                <text class="chip-label" x="406" y="246">Menu</text>
+                <text class="chip-live" x="522" y="245.5" text-anchor="end">LIVE</text>
+              </g>
+              <g class="chip" data-i="3">
+                <rect class="chip-box" x="372" y="300" width="164" height="44" rx="10" />
+                <circle class="chip-dot" cx="390" cy="322" r="3.4" />
+                <text class="chip-label" x="406" y="326">Campaign</text>
+                <text class="chip-live" x="522" y="325.5" text-anchor="end">LIVE</text>
+              </g>
+              <g class="chip" data-i="4">
+                <rect class="chip-box" x="372" y="380" width="164" height="44" rx="10" />
+                <circle class="chip-dot" cx="390" cy="402" r="3.4" />
+                <text class="chip-label" x="406" y="406">Contact Card</text>
+                <text class="chip-live" x="522" y="405.5" text-anchor="end">LIVE</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROBLEM ================= -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="reveal label">
+          <span class="label-index">01</span><span class="label-tick"></span><span>The Problem</span>
+        </div>
+        <div class="split">
+          <h2 class="reveal section-title">Printed QR codes should not become obsolete.</h2>
+          <div class="reveal prose" style="--d:0.1s">
+            <p>A standard QR code is static. The destination is encoded directly into the pattern, so the moment it is printed, the link is locked forever.</p>
+            <p>When that link changes — a campaign ends, a menu updates, a domain moves — the printed material stops working. The business card, the label, the packaging, the poster all become dead weight.</p>
+            <p class="prose-strong">The QR code outlives the link it was built to carry.</p>
+          </div>
+        </div>
+        <div class="reveal status-line" style="--d:0.15s">
+          <span class="status-comment">// status</span>
+          <span>destination</span>
+          <span class="status-chip">locked</span>
+          <span class="status-faint">— reprint required</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOLUTION ================= -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="reveal label">
+          <span class="label-index">02</span><span class="label-tick"></span><span>How It Works</span>
+        </div>
+        <h2 class="reveal section-title wide">Relinq separates the QR from the destination.</h2>
+        <ol class="step-grid">
+          <li class="reveal step">
+            <div class="step-head"><span class="step-n">01</span><span class="step-tag">Step</span></div>
+            <h3>Print one permanent Relinq QR</h3>
+            <p>Generate a single QR code tied to your account. Its pattern never changes — print it on anything, once.</p>
+          </li>
+          <li class="reveal step" style="--d:0.08s">
+            <div class="step-head"><span class="step-n">02</span><span class="step-tag">Step</span></div>
+            <h3>Manage the destination in your account</h3>
+            <p>The QR points to a Relinq address. Behind it, you set the real link your audience should reach.</p>
+          </li>
+          <li class="reveal step" style="--d:0.16s">
+            <div class="step-head"><span class="step-n">03</span><span class="step-tag">Step</span></div>
+            <h3>Change the link anytime</h3>
+            <p>Update the destination from your dashboard. Every existing scan instantly routes to the new target.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="reveal label">
+          <span class="label-index">03</span><span class="label-tick"></span><span>Capabilities</span>
+        </div>
+        <h2 class="reveal section-title">Everything a printed code needs to stay useful.</h2>
+        <div class="card-grid" id="feature-grid"></div>
+      </div>
+    </section>
+
+    <!-- ================= USE CASES ================= -->
+    <section class="section" id="use-cases">
+      <div class="container">
+        <div class="reveal label">
+          <span class="label-index">04</span><span class="label-tick"></span><span>Applications</span>
+        </div>
+        <h2 class="reveal section-title">One code, wherever print meets the web.</h2>
+        <ul class="case-grid" id="case-grid"></ul>
+      </div>
+    </section>
+
+    <!-- ================= TRUST ================= -->
+    <section class="section" id="trust">
+      <div class="container">
+        <div class="reveal label">
+          <span class="label-index">05</span><span class="label-tick"></span><span>Reliability</span>
+        </div>
+        <div class="split">
+          <h2 class="reveal section-title">Built for reliability.</h2>
+          <ul class="reveal trust-list" id="trust-list" style="--d:0.1s"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="section final-cta">
+      <div class="final-bg" aria-hidden="true">
+        <div class="grid-backdrop"></div>
+        <div class="cta-glow"></div>
+      </div>
+      <div class="container final-inner">
+        <h2 class="reveal final-title">Print once. Update forever.</h2>
+        <p class="reveal final-sub" style="--d:0.08s">
+          Give your printed material a destination you can change. Set up your
+          first dynamic QR in minutes.
+        </p>
+        <div class="reveal" style="--d:0.16s">
+          <a href="/signup" class="btn btn-primary" aria-label="Create your first dynamic QR code">
+            Create your first dynamic QR
+            <svg class="ic-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <span class="brand-name">Relinq</span>
+        <p>Static print. Dynamic destination.</p>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <p class="footer-heading">Product</p>
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#trust">Reliability</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <p class="footer-heading">Company</p>
+        <a href="/signup">About</a>
+        <a href="/signup">Changelog</a>
+        <a href="/signup">Contact</a>
+        <a href="/signup">Status</a>
+      </nav>
+      <nav class="footer-col" aria-label="Legal">
+        <p class="footer-heading">Legal</p>
+        <a href="/signup">Privacy</a>
+        <a href="/signup">Terms</a>
+        <a href="/signup">Security</a>
+        <a href="/signup">Cookies</a>
+      </nav>
+    </div>
+    <div class="container footer-meta">
+      <span>© 2026 Relinq</span>
+      <span>Dynamic QR Infrastructure</span>
+    </div>
+    <div class="footer-wordmark" aria-hidden="true"><span>RELINQ</span></div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
