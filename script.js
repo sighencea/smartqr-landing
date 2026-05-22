@@ -393,6 +393,36 @@
     var modalX = modal.querySelector(".modal-x");
     var lastFocus = null;
 
+    // Cloudflare Turnstile — required because the Formspree form has it on.
+    var TURNSTILE_SITEKEY = "0x4AAAAAADUdXoXm_zLD0GaR";
+    var turnstileId = null;
+    var turnstileTries = 0;
+
+    // Render the widget once the form is visible (it cannot render hidden).
+    function renderTurnstile() {
+      if (turnstileId !== null) return;
+      if (!window.turnstile || !window.turnstile.render) {
+        if (turnstileTries++ < 30) window.setTimeout(renderTurnstile, 200);
+        return;
+      }
+      var holder = document.getElementById("cs-turnstile");
+      if (!holder) return;
+      turnstileId = window.turnstile.render(holder, {
+        sitekey: TURNSTILE_SITEKEY,
+        theme: "dark",
+      });
+    }
+
+    function resetTurnstile() {
+      if (turnstileId !== null && window.turnstile) {
+        try {
+          window.turnstile.reset(turnstileId);
+        } catch (err) {
+          /* widget not ready — ignore */
+        }
+      }
+    }
+
     // Only the elements currently visible can receive focus.
     function focusables() {
       var all = modal.querySelectorAll(
@@ -436,6 +466,7 @@
         submitBtn.disabled = false;
         submitBtn.textContent = "Notify me";
       }
+      resetTurnstile();
     }
 
     function open(e) {
@@ -460,6 +491,7 @@
       notifyBtn.addEventListener("click", function () {
         notifyBtn.hidden = true;
         form.hidden = false;
+        renderTurnstile();
         if (emailInput) emailInput.focus();
       });
     }
@@ -469,6 +501,25 @@
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         if (errorEl) errorEl.hidden = true;
+
+        // Turnstile must have produced a token before we submit.
+        var token = "";
+        if (turnstileId !== null && window.turnstile) {
+          try {
+            token = window.turnstile.getResponse(turnstileId) || "";
+          } catch (err) {
+            token = "";
+          }
+        }
+        if (!token) {
+          if (errorEl) {
+            errorEl.textContent =
+              "Please wait a moment for the security check to finish, then try again.";
+            errorEl.hidden = false;
+          }
+          return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending…";
         fetch(form.action, {
@@ -500,6 +551,7 @@
                   : "Could not reach the server. Please try again.";
               errorEl.hidden = false;
             }
+            resetTurnstile();
           })
           .finally(function () {
             submitBtn.disabled = false;

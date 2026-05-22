@@ -313,7 +313,7 @@
       </nav>
       <nav class="footer-col" aria-label="Legal">
         <p class="footer-heading">Legal</p>
-        <a href="/signup">Privacy</a>
+        <a href="privacy.html">Privacy</a>
         <a href="/signup">Terms</a>
         <a href="/signup">Security</a>
         <a href="/signup">Cookies</a>
@@ -356,6 +356,7 @@
           autocomplete="email"
           aria-label="Your email address"
         />
+        <div id="cs-turnstile" class="cs-turnstile"></div>
         <button class="modal-action" type="submit" id="cs-submit">Notify me</button>
         <p class="modal-note">
           We'll only use your email to let you know when Relinq is live. No
@@ -369,6 +370,7 @@
     </div>
   </div>
 
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>

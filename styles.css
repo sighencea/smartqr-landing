@@ -1239,6 +1239,13 @@ section[id] {
   border-color: var(--accent);
 }
 
+.cs-turnstile {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  min-height: 65px;
+}
+
 .modal-form .modal-action {
   width: 100%;
   margin-top: 0.7rem;
@@ -1318,6 +1325,15 @@ section[id] {
   .footer-meta { flex-direction: column; }
   .hero-inner { padding-top: 7rem; }
   .btn { width: 100%; }
+}
+
+@media (max-width: 540px) {
+  .modal { padding: 1rem; }
+  .modal-card { padding: 2.25rem 1.5rem 2rem; }
+}
+
+@media (max-width: 380px) {
+  .cs-turnstile { transform: scale(0.9); transform-origin: top center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
