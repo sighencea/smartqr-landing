@@ -936,8 +936,15 @@ section[id] {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 940px) {
+  .hero-inner {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-top: 8.5rem;
+    padding-bottom: 4.5rem;
+  }
   .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; }
   .hero-visual { justify-content: center; }
+  .hero-visual .qr-diagram { max-width: 460px; }
   .split { grid-template-columns: 1fr; gap: 1.5rem; }
   .split .section-title { margin-bottom: 0; }
   .prose { margin-top: 0; }
@@ -949,6 +956,7 @@ section[id] {
 
 @media (max-width: 720px) {
   .site-nav { display: none; }
+  .brand-tag { display: none; }
 }
 
 @media (max-width: 560px) {
