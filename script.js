@@ -255,6 +255,67 @@
     window.addEventListener("scroll", update, { passive: true });
   }
 
+  /* ---------------------------------------------------------
+     8. "Coming soon" modal — every placeholder action link
+        (href="/signup") opens it instead of navigating.
+        In-page anchor links keep their normal scroll behaviour.
+     --------------------------------------------------------- */
+  function wireComingSoon() {
+    var modal = document.getElementById("coming-soon");
+    if (!modal) return;
+    var card = modal.querySelector(".modal-card");
+    var lastFocus = null;
+
+    function focusables() {
+      return modal.querySelectorAll(
+        'button, [href], [tabindex]:not([tabindex="-1"])'
+      );
+    }
+
+    function onKey(e) {
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      var f = focusables();
+      if (!f.length) return;
+      var first = f[0];
+      var last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function open(e) {
+      if (e) e.preventDefault();
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      var action = card.querySelector(".modal-action");
+      if (action) action.focus();
+      document.addEventListener("keydown", onKey);
+    }
+
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    modal.querySelectorAll("[data-close]").forEach(function (el) {
+      el.addEventListener("click", close);
+    });
+    document.querySelectorAll('a[href="/signup"]').forEach(function (el) {
+      el.addEventListener("click", open);
+    });
+  }
+
   /* --------------------------------------------------------- */
   function init() {
     buildQR();
@@ -264,6 +325,7 @@
     cycleDestinations();
     observeReveals();
     headerScroll();
+    wireComingSoon();
   }
 
   if (document.readyState === "loading") {
