@@ -383,13 +383,24 @@
   function wireComingSoon() {
     var modal = document.getElementById("coming-soon");
     if (!modal) return;
-    var card = modal.querySelector(".modal-card");
+    var desc = document.getElementById("cs-desc");
+    var notifyBtn = document.getElementById("cs-notify");
+    var form = document.getElementById("cs-form");
+    var emailInput = document.getElementById("cs-email");
+    var submitBtn = document.getElementById("cs-submit");
+    var errorEl = document.getElementById("cs-error");
+    var successEl = document.getElementById("cs-success");
+    var modalX = modal.querySelector(".modal-x");
     var lastFocus = null;
 
+    // Only the elements currently visible can receive focus.
     function focusables() {
-      return modal.querySelectorAll(
-        'button, [href], [tabindex]:not([tabindex="-1"])'
+      var all = modal.querySelectorAll(
+        'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
+      return [].slice.call(all).filter(function (el) {
+        return !el.disabled && el.offsetParent !== null;
+      });
     }
 
     function onKey(e) {
@@ -411,13 +422,29 @@
       }
     }
 
+    // Return the modal to its initial "Notify me" state.
+    function reset() {
+      if (errorEl) errorEl.hidden = true;
+      if (successEl) successEl.hidden = true;
+      if (desc) desc.hidden = false;
+      if (form) {
+        form.hidden = true;
+        form.reset();
+      }
+      if (notifyBtn) notifyBtn.hidden = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Notify me";
+      }
+    }
+
     function open(e) {
       if (e) e.preventDefault();
       lastFocus = document.activeElement;
+      reset();
       modal.hidden = false;
       document.body.style.overflow = "hidden";
-      var action = card.querySelector(".modal-action");
-      if (action) action.focus();
+      if (notifyBtn) notifyBtn.focus();
       document.addEventListener("keydown", onKey);
     }
 
@@ -426,6 +453,59 @@
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
       if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    // Step 1 -> 2: reveal the email field.
+    if (notifyBtn && form) {
+      notifyBtn.addEventListener("click", function () {
+        notifyBtn.hidden = true;
+        form.hidden = false;
+        if (emailInput) emailInput.focus();
+      });
+    }
+
+    // Step 2 -> 3: submit to Formspree via AJAX, stay on the page.
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (errorEl) errorEl.hidden = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+        fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        })
+          .then(function (res) {
+            if (res.ok) {
+              form.hidden = true;
+              if (desc) desc.hidden = true;
+              if (successEl) successEl.hidden = false;
+              if (modalX) modalX.focus();
+              return;
+            }
+            return res.json().then(function (data) {
+              var msg =
+                data && data.errors && data.errors[0]
+                  ? data.errors[0].message
+                  : "Something went wrong. Please try again.";
+              throw new Error(msg);
+            });
+          })
+          .catch(function (err) {
+            if (errorEl) {
+              errorEl.textContent =
+                err && err.message
+                  ? err.message
+                  : "Could not reach the server. Please try again.";
+              errorEl.hidden = false;
+            }
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Notify me";
+          });
+      });
     }
 
     modal.querySelectorAll("[data-close]").forEach(function (el) {

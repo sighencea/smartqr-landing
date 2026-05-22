@@ -1204,6 +1204,68 @@ section[id] {
   box-shadow: 0 0 40px -12px rgba(121, 230, 216, 0.55);
 }
 
+.modal-action:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.modal-form {
+  margin-top: 1.6rem;
+}
+
+.modal-gotcha {
+  display: none;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  text-align: center;
+  transition: border-color 0.25s ease;
+}
+
+.modal-input::placeholder {
+  color: var(--text-faint);
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.modal-form .modal-action {
+  width: 100%;
+  margin-top: 0.7rem;
+}
+
+.modal-note {
+  margin: 1rem auto 0;
+  max-width: 24rem;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+.modal-error {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: #ff9b9b;
+}
+
+.modal-success {
+  margin: 1.5rem auto 0;
+  max-width: 24rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--accent);
+}
+
 /* ============================================================
    ENTRANCE ANIMATION
    ============================================================ */

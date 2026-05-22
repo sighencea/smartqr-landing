@@ -339,10 +339,33 @@
       </span>
       <h2 class="modal-title" id="cs-title">Coming soon</h2>
       <p class="modal-desc" id="cs-desc">
-        Relinq isn't live yet. Account creation and the dashboard are still
-        being built — this page is an early preview. Check back shortly.
+        Relinq isn't live yet — account creation and the dashboard are still
+        being built. Want to know the moment it launches?
       </p>
-      <button class="modal-action" type="button" data-close>Got it</button>
+      <button class="modal-action" type="button" id="cs-notify">Notify me</button>
+      <form class="modal-form" id="cs-form" action="https://formspree.io/f/mqejblrd" method="POST" hidden>
+        <input type="text" name="_gotcha" class="modal-gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="Relinq launch notification signup" />
+        <input
+          class="modal-input"
+          type="email"
+          id="cs-email"
+          name="email"
+          required
+          placeholder="you@example.com"
+          autocomplete="email"
+          aria-label="Your email address"
+        />
+        <button class="modal-action" type="submit" id="cs-submit">Notify me</button>
+        <p class="modal-note">
+          We'll only use your email to let you know when Relinq is live. No
+          spam, and we never sell or share your data.
+        </p>
+        <p class="modal-error" id="cs-error" role="alert" hidden></p>
+      </form>
+      <p class="modal-success" id="cs-success" hidden>
+        You're on the list. We'll email you the moment Relinq is live.
+      </p>
     </div>
   </div>
 
